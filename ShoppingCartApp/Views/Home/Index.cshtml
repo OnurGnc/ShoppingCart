@@ -1,0 +1,142 @@
+﻿@{
+    ViewData["Title"] = "Alışveriş Sepeti";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<link href="/css/main.css" rel="stylesheet" />
+
+
+<script>
+    var products = null;
+    var cartProducts = null;
+
+    function callAPI(method, url, data, onSuccess, isAsync) {
+        return $.ajax({
+
+            url: url,
+            data: JSON.stringify(data),
+            type: method,
+            crossDomain: true,
+            success: onSuccess,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            error: function (err) {
+
+            }
+        });
+    }
+
+    function test() {
+        alert("test");
+    }
+
+    function bindProducts(products) {
+        var html = "";
+        for (var i = 0; i < products.length; i++) {
+            html += '<div class="col-sm-4 py-3">';
+            html += '<div class="card">';
+            html += '<img src="/images/' + products[i].imageUrl + '" class="card-img-top img-fluid px-5" alt="...">';
+            html += '<div class="card-body">';
+            html += '<h5 class="card-title d-flex justify-content-center align-items-center">' + products[i].name + '</h5>';
+            html += '<p class="card-text d-flex justify-content-center align-items-center">' + products[i].price + ' ₺</p>';
+            html += '<a href="#" class="btn btn-primary d-flex justify-content-center align-items-center" onclick="addCart(' + products[i].id + ');" >Sepete Ekle</a>';
+            html += '</div></div></div>';
+        }
+        $("#row_product").html(html);
+    }
+
+    function addCart(id) {
+        callAPI("POST", "http://localhost:22471/api/cart/addtocart", { Id: id }, function (response) {
+            bindCart(response);
+        }, false);
+    }
+
+    function bindCart(cartProducts) {
+        var html = "";
+        var products = cartProducts.products;
+        for (var i = 0; i < products.length; i++) {
+            html += '<div class="col-12 d-flex p-1 cart-item-summary">';
+            html += '<div class="cart-item-title w-25 d-flex">' + products[i].name + '</div>';
+            html += '<div class="cart-item-amount w-25">';
+            html += '<input type="number" id="' + products[i].id + '" onchange="updateCartProduct(this);" onkeydown="return false" step="1" min="0" max="' + products[i].stock +'" value="' + products[i].quantity + '" name="quantity" class="quantity-field border-0 text-center w-50" />';
+            html += '</div>';
+            html += '<div class="cart-item-price w-25">' + products[i].price * products[i].quantity +' ₺</div>';
+            html += '<div class="cart-item-remove w-25"><button onclick="removeFromCart(' + products[i].id + ')" class="btn-sm btn-danger"><i class="fa fa-trash"></i></button></div></div>';
+        }
+        $("#divCartProducts").html(html);
+        $("#labelTotalPrice").html(cartProducts.totalPrice + " ₺");
+    }
+
+    function removeFromCart(id) {
+        callAPI("DELETE", "http://localhost:22471/api/cart/", { Id:id} , function (response) {
+            bindCart(response);
+        }, false);
+    }
+
+    function updateCart(productId, quantity) {
+        var parameter = {
+            Id: productId,
+            Quantity: quantity
+        }
+        callAPI("POST", "http://localhost:22471/api/cart/updatecart", parameter, function (response) {
+            bindCart(response);
+        }, false);
+    }
+
+    function updateCartProduct(obj) {
+        var productId = obj.id;
+        var quantity = $("#" + productId).val();
+
+        debugger;
+        if (quantity == 0) {
+            removeFromCart(productId);
+        } else {
+            updateCart(productId, quantity);
+        }
+    }
+
+</script>
+
+
+<div class="container-fluid px-5">
+    <div class="row">
+        <div class="col-sm-7">
+            <div class="row" id="row_product">
+
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div class="cart-wrapper">
+                <div class="cart-inner">
+                    <div class="col-12">
+                        <div class="cart-border p-3">
+                            <span class="cart-title"> Mini Sepet </span>
+                            <div id="divCartProducts"></div>
+                            <div class="col-12 d-flex my-3">
+                                <div class="cart-total-title w-50 text-center">
+                                    Toplam Tutar
+                                </div>
+                                <div class="cart-total-price w-50 text-center" id="labelTotalPrice">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    callAPI("GET", "http://localhost:22471/api/product", null, function (response) {
+        bindProducts(response);
+        products = response;
+    }, false);
+
+    callAPI("GET", "http://localhost:22471/api/cart", null, function (response) {
+        bindCart(response);
+    }, false);
+</script>

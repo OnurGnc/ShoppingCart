@@ -1,0 +1,17 @@
+C:\Users\Onur\source\repos\ShoppingCartApp\CartRepository\bin\Debug\net5.0\CartRepository.deps.json
+C:\Users\Onur\source\repos\ShoppingCartApp\CartRepository\bin\Debug\net5.0\CartRepository.dll
+C:\Users\Onur\source\repos\ShoppingCartApp\CartRepository\bin\Debug\net5.0\ref\CartRepository.dll
+C:\Users\Onur\source\repos\ShoppingCartApp\CartRepository\bin\Debug\net5.0\CartRepository.pdb
+C:\Users\Onur\source\repos\ShoppingCartApp\CartRepository\bin\Debug\net5.0\CartContract.dll
+C:\Users\Onur\source\repos\ShoppingCartApp\CartRepository\bin\Debug\net5.0\CartData.dll
+C:\Users\Onur\source\repos\ShoppingCartApp\CartRepository\bin\Debug\net5.0\CartContract.pdb
+C:\Users\Onur\source\repos\ShoppingCartApp\CartRepository\bin\Debug\net5.0\CartData.pdb
+C:\Users\Onur\source\repos\ShoppingCartApp\CartRepository\obj\Debug\net5.0\CartRepository.csproj.AssemblyReference.cache
+C:\Users\Onur\source\repos\ShoppingCartApp\CartRepository\obj\Debug\net5.0\CartRepository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Onur\source\repos\ShoppingCartApp\CartRepository\obj\Debug\net5.0\CartRepository.AssemblyInfoInputs.cache
+C:\Users\Onur\source\repos\ShoppingCartApp\CartRepository\obj\Debug\net5.0\CartRepository.AssemblyInfo.cs
+C:\Users\Onur\source\repos\ShoppingCartApp\CartRepository\obj\Debug\net5.0\CartRepository.csproj.CoreCompileInputs.cache
+C:\Users\Onur\source\repos\ShoppingCartApp\CartRepository\obj\Debug\net5.0\CartRepository.csproj.CopyComplete
+C:\Users\Onur\source\repos\ShoppingCartApp\CartRepository\obj\Debug\net5.0\CartRepository.dll
+C:\Users\Onur\source\repos\ShoppingCartApp\CartRepository\obj\Debug\net5.0\ref\CartRepository.dll
+C:\Users\Onur\source\repos\ShoppingCartApp\CartRepository\obj\Debug\net5.0\CartRepository.pdb

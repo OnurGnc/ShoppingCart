@@ -1,0 +1,24 @@
+﻿.cart-border {
+    border: 2px solid #000;
+    position: relative;
+}
+
+.cart-title {
+    position: absolute;
+    top: -15px;
+    background: #fff;
+    left: 20px;
+}
+
+.cart-wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart-inner {
+    max-width: 100%;
+    width: 500px;
+}
